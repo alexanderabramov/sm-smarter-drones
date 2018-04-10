@@ -1,0 +1,14 @@
+return PlaceObj('ModDef', {
+	'title', "Smarter Drones",
+	'description', "Improves Drone AI in small but crucial ways.\r\n\r\nFirst improvement:\r\n- when dumping Waste Rock, drones carry it to the closest available Dumping Site or pile (unlike round-robin in the base game). This is an enormous efficiency boost if you have more than one source of waste rock in range of one drone controller.\r\n\r\nCompatibility:\r\n- does not modify any game objects, so should be compatible with almost any mods, and can be added/removed to existing saves\r\n- modifies some functions in Drone and DroneControl classes, could break after game updates",
+	'id', "Yc1438O",
+	'author', "casual",
+	'version', 3,
+	'lua_revision', 228722,
+	'code', {
+		"Code/Drone.lua",
+		"Code/DroneHub.lua",
+	},
+	'saved', 1523387280,
+	'TagOther', true,
+})
