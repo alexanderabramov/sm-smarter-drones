@@ -47,6 +47,6 @@ function DroneControl:FindDemandRequest(drone, resource, amount, min_priority, i
 	required_flags = required_flags or 0
 	ignore_flags = ignore_flags or 0
 	assert(self.under_construction)
-	return Request_FindDemand_C(self.demand_queues, self.under_construction or empty_table, self.restrictor_tables or empty_table, resource, amount,
+	return Request_FindDemand_C(drone, self.demand_queues, self.under_construction or empty_table, self.restrictor_tables or empty_table, resource, amount,
 		min_priority, ignore_flags, required_flags, requestor_prio, exclude_building, drone.unreachable_buildings)
 end
