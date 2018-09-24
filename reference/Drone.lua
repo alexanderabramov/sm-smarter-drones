@@ -4,6 +4,10 @@ function Drone:ImproveDemandRequest(s_request, d_request, resource, amount, must
 	local priority, d_request2
 	if IsValid(d_building) then
 		priority = d_building:GetPriorityForRequest(d_request) + 1
+		if resource=="WasteRock" then
+			-- hack: as we cannot override initial assignment of WasteRock disposal tasks, we override it now to look for the (closest) of the same priority
+			priority = priority - 1
+		end
 	else
 		must_change = true
 	end
