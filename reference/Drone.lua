@@ -8,6 +8,10 @@ function Drone:ImproveDemandRequest(s_request, d_request, resource, amount, must
 		else
 			priority = d_building.priority + 1
 		end
+      if resource=="WasteRock" then
+        -- hack: as we cannot override initial assignment of WasteRock disposal tasks, we override it now to look for the (closest) of the same priority
+        priority = priority - 1
+      end
 	else
 		must_change = true
 	end
