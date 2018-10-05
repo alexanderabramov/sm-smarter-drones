@@ -1,7 +1,7 @@
 local ImproveDemandRequestOriginal = Drone.ImproveDemandRequest
 
 local function ImproveDemandRequest(self, s_request, d_request, resource, amount, must_change)
-  status, d_request = xpcall(function()
+  local status, d_request = xpcall(function()
     local command_center = self.command_center
     local d_building = d_request:GetBuilding()
     local priority, d_request2

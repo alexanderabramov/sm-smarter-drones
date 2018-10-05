@@ -1,4 +1,7 @@
 local MaxBuildingPriority     = const.MaxBuildingPriority
+local rfConstruction = const.rfConstruction
+local rfRestrictorRocket = const.rfRestrictorRocket
+local rfPairWithHigher = const.rfPairWithHigher
 
 local function Request_FindDemand_WasteRock(demand_queues, under_construction, restrictor_t, resource, amount, min_priority, ignore_flags, required_flags, requestor_prio, exclude_building, unreachable_buildings, reference_point)
   requestor_prio = requestor_prio or MaxBuildingPriority + 1
@@ -40,7 +43,7 @@ end
 local FindDemandRequestOriginal = DroneControl.FindDemandRequest
 
 local function FindDemandRequest(self, drone, resource, amount, min_priority, ignore_flags, required_flags, requestor_prio, exclude_building)
-  status, res_request, res_amount = xpcall(function()
+  local status, res_request, res_amount = xpcall(function()
     if resource ~= "WasteRock" then
       return FindDemandRequestOriginal(self, drone, resource, amount, min_priority, ignore_flags, required_flags, requestor_prio, exclude_building)
     end
@@ -50,7 +53,7 @@ local function FindDemandRequest(self, drone, resource, amount, min_priority, ig
     required_flags = required_flags or 0
     ignore_flags = ignore_flags or 0
     assert(self.under_construction)
-    reference_point = drone:GetPos()
+    local reference_point = drone:GetPos()
 
     return Request_FindDemand_WasteRock(self.demand_queues, self.under_construction or empty_table, self.restrictor_tables or empty_table, resource, amount,
     min_priority, ignore_flags, required_flags, requestor_prio, exclude_building, drone.unreachable_buildings, reference_point)
